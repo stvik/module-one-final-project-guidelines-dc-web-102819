@@ -1,10 +1,12 @@
 require_relative '../config/environment'
 
-doctor = Job.find(1)
+require_relative '../db/seeds.rb'
 
-sara = User.find(1)
+# doctor = Job.find(1)
 
-uj = UserJob.find(1)
+# sara = User.find(1)
+
+# uj = UserJob.find(1)
 
 puts "HELLO WORLD"
 
