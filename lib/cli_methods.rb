@@ -35,15 +35,6 @@ def assign_job(job_selection, new_user)
     UserJob.create(user_id: new_user.id, job_id: job_selection.id)
 end
 
-def increment_money(job, user)
-    user.money += job.salary
-    user.save
-end
-
-def increment_happiness(job, user)
-    user.happiness += job.happiness_increment
-    user.save
-end
 
 def end_game(job, user)
     puts "Congratulation's #{user.name}. "
@@ -62,8 +53,8 @@ def run_program
     new_user = User.create(name: name, gender: gender)
     job = get_job
     assign_job(job, new_user)
-    increment_money(job, new_user)
-    increment_happiness(job, new_user)
+    new_user.increment_happiness(job)
+    new_user.increment_money(job)
     end_game(job, new_user)
 end
 

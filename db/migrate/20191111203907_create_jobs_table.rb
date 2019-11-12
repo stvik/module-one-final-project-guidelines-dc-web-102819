@@ -4,7 +4,7 @@ class CreateJobsTable < ActiveRecord::Migration[6.0]
       t.string :name
       t.integer :happiness_increment
       t.integer :level
-      t.integer :salary
+      t.integer :money
     end
   end
 end
