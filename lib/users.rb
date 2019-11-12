@@ -11,4 +11,10 @@ class User < ActiveRecord::Base
         self.money += job_or_task.money
         self.save
     end
+
+    def increment_age
+        self.age += 10
+        self.save
+    end
+
 end
