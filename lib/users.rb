@@ -18,5 +18,10 @@ class User < ActiveRecord::Base
         self.save
     end
 
+    def current_job
+        current_jobid = self.user_jobs.find {|userjob| userjob.current? == true}.job_id
+        current_job = Job.all.find {|job| job.id == current_jobid}
+    end
+
 
 end
