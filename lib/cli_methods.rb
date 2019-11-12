@@ -33,6 +33,13 @@ def assign_job(job_selection, new_user)
     UserJob.create(user_id: new_user.id, job_id: job_selection.id)
 end
 
+def choice_output(user, job)
+    puts "You are a #{job.name} making $#{job.money}. "
+    puts "Your happiness is currently #{user.happiness}."
+    puts "Your current balance is $#{user.money}"
+    puts "You are now #{user.age}."
+    puts "Beware, after each decision your age will be 10 years older."
+end
 
 #create new method that will display current job, money, happiness, age and will ask the user for his/her next move
 
@@ -54,6 +61,8 @@ def run_program
     assign_job(job, new_user)
     new_user.increment_happiness(job)
     new_user.increment_money(job)
+    new_user.increment_age
+    choice_output(new_user, job)
     end_game(job, new_user)
 end
 

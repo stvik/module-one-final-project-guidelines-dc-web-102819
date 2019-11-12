@@ -12,5 +12,10 @@ class User < ActiveRecord::Base
         self.save
     end
 
-    #create method tha will increment the age by 10 after each turn
+    #create method that will increment the age by 10 after each turn
+    def increment_age
+        self.age += 10
+        self.save
+    end
+
 end
