@@ -45,6 +45,14 @@ def increment_happiness(job, user)
     user.save
 end
 
+def end_game(job, user)
+    puts "Congratulation's #{user.name}. "
+    puts "Here are your final stats:"
+    puts "Money: #{user.money}"
+    puts "Happiness: #{user.happiness}"
+    puts "Job: #{job.name}"
+end
+
 def run_program
     welcome
     ask_name
@@ -56,6 +64,7 @@ def run_program
     assign_job(job, new_user)
     increment_money(job, new_user)
     increment_happiness(job, new_user)
+    end_game(job, new_user)
 end
 
 
