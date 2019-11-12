@@ -41,7 +41,7 @@ def choice_output(user, job)
     puts "Beware, after each decision your age will be 10 years older."
 end
 
-#create new method that will display current job, money, happiness, age and will ask the user for his/her next move
+
 
 def end_game(job, user)
     puts "Congratulation's #{user.name}. "
@@ -51,19 +51,28 @@ def end_game(job, user)
     puts "Job: #{job.name}"
 end
 
-#create run blocks each block representing a turn 
-def run_program
+def create_user
     welcome
     name = ask_name
     gender = get_gender
     new_user = User.create(name: name, gender: gender)
+    return new_user
+end
+
+def increment_user(user,job)
+    user.increment_happiness(job)
+    user.increment_money(job)
+    user.increment_age
+end
+
+#create run blocks each block representing a turn 
+def run_program
+    player = create_user
     job = get_job
-    assign_job(job, new_user)
-    new_user.increment_happiness(job)
-    new_user.increment_money(job)
-    new_user.increment_age
-    choice_output(new_user, job)
-    end_game(job, new_user)
+    assign_job(job, player)
+    increment_user(player,job)
+    choice_output(player, job)
+    end_game(job, player)
 end
 
 
