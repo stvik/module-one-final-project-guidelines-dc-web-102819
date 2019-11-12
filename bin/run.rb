@@ -10,6 +10,9 @@ require_relative '../db/seeds.rb'
 # uj = UserJob.find(1)
 
 run_program
+binding.pry
+0
+
 
 
 
