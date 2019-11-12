@@ -11,4 +11,6 @@ class User < ActiveRecord::Base
         self.money += job_or_task.money
         self.save
     end
+
+    #create method tha will increment the age by 10 after each turn
 end

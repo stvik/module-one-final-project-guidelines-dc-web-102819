@@ -1,25 +1,25 @@
+#Add more creative content
 
 def welcome
     puts "Welcome to your new life!"
 end
 
+#ask_name is using a gem called tty to prompt the user for the name its requiring an inout and its capitalizing it
 def ask_name
-    puts "Enter your new name:"
+    prompt = TTY::Prompt.new
+    prompt.ask("Choose your name:") do |q|
+        q.required true
+        q.modify :capitalize
+    end
 end
 
-def store_name
-   gets.chomp
-end
-
+#get_gender is also using tty gem and its requiring the user to select from one of the given options
 def get_gender
     prompt = TTY::Prompt.new
     prompt.select("Enter your gender:", %w(Male Female Other))
 end
 
-def ask_job
-    puts "Pick your new job. Pick a number"
-end
-
+#get_job is doing the same as get_gender but its getting the job options from the name column jobs table
 def get_job
     prompt = TTY::Prompt.new
     jobs = Job.all.map {|job| job.name}
@@ -28,10 +28,13 @@ def get_job
     return chosen_job
 end
 
+
 def assign_job(job_selection, new_user)
     UserJob.create(user_id: new_user.id, job_id: job_selection.id)
 end
 
+
+#create new method that will display current job, money, happiness, age and will ask the user for his/her next move
 
 def end_game(job, user)
     puts "Congratulation's #{user.name}. "
@@ -41,10 +44,10 @@ def end_game(job, user)
     puts "Job: #{job.name}"
 end
 
+#create run blocks each block representing a turn 
 def run_program
     welcome
-    ask_name
-    name = store_name
+    name = ask_name
     gender = get_gender
     new_user = User.create(name: name, gender: gender)
     job = get_job
