@@ -11,12 +11,9 @@ def store_name
    gets.chomp
 end
 
-def ask_gender
-   puts "Enter your gender:"
-end
-
 def get_gender
-    gets.chomp
+    prompt = TTY::Prompt.new
+    prompt.select("Enter your gender:", %w(Male Female Other))
 end
 
 def ask_job
@@ -48,7 +45,6 @@ def run_program
     welcome
     ask_name
     name = store_name
-    ask_gender
     gender = get_gender
     new_user = User.create(name: name, gender: gender)
     job = get_job
