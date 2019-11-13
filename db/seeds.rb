@@ -4,6 +4,8 @@ Task.destroy_all
 UserJob.destroy_all
 
 #starting 'job' - doneee
+
+#unemployed
 unemployed = Job.create(name: "Unemployed", happiness_increment: 0, money: 0)
 #medical jobs - sara
 med_school = Job.create(name: 'Medical Student', happiness_increment: -3, money: -10000)
