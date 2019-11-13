@@ -29,7 +29,7 @@ end
 
 
 def assign_job(job_selection, new_user)
-    UserJob.create(user_id: new_user.id, job_id: job_selection.id, current?: true)
+    UserJob.create(user_id: new_user.id, job_id: job_selection.id, current_job?: true)
 end
 
 def choice_output(user, job)
@@ -69,8 +69,19 @@ def output_tasks(user)
     task_descriptions = user.current_job.tasks.collect {|task| task.description}
     input = PROMPT.select("Make a decision:", task_descriptions)
     task = user.current_job.tasks.find_by(description: input)
-    increment_user(user,task)
 end
+
+def path(user)
+    chosen_task = output_tasks(user)
+    new_job_id = chosen_task.outcome_job_id
+    new_job = Job.all.find(new_job_id)
+    UserJob.find_by(job_id:user.current_job.id, current_job?: true).change_current_to_false
+    assign_job(new_job,user)
+    increment_user(user,new_job)
+    user.current_job
+end
+
+
 #create run blocks each block representing a turn 
 def run_program
     welcome
@@ -79,15 +90,17 @@ def run_program
     assign_job(job, player)
     increment_user(player,job)
     choice_output(player, job)
-    # end_game(job, player)
-    output_tasks(player)
+    # output_tasks(player)
+    while player.age<75 && player.happiness > 0 && player.money > 0 do
+        path(player)
+    end
     binding.pry
 end
 
 
 
 
-# while age < 75
+# while age < 75 && money > 0 && happiness > 0
 #    let user choose from the task descriptions for that "level" and job_id
 #    each choice will have different outcome. 
 # end
