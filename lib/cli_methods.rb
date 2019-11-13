@@ -51,7 +51,9 @@ end
 def create_user
     name = ask_name
     gender = get_gender
+    starting_job = Job.find_by(name:"Unemployed")
     new_user = User.create(name: name, gender: gender)
+    assign_job(starting_job,new_user)
     return new_user
 end
 
@@ -86,11 +88,6 @@ end
 def run_program
     welcome
     player = create_user
-    job = get_job
-    assign_job(job, player)
-    increment_user(player,job)
-    choice_output(player, job)
-    # output_tasks(player)
     while player.age<75 && player.happiness > 0 && player.money > 0 do
         path(player)
     end

@@ -3,7 +3,6 @@ class CreateJobsTable < ActiveRecord::Migration[6.0]
     create_table :jobs do |t|
       t.string :name
       t.integer :happiness_increment
-      t.integer :level
       t.integer :money
     end
   end

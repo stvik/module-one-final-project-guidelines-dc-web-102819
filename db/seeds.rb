@@ -3,28 +3,41 @@ Job.destroy_all
 Task.destroy_all
 UserJob.destroy_all
 
-#unemployed
+#starting 'job' - doneee
 unemployed = Job.create(name: "Unemployed", happiness_increment: 0, money: 0)
-unemployed.tasks << Task.create(description:"I want to go to school for medicine",happiness_increment: -2, money: -10000)
-unemployed.tasks << Task.create(description:"I want to go to work in construction",happiness_increment: 2, money: 15000)
-unemployed.tasks << Task.create(description:"I want to intern for my local congressman",happiness_increment: 0, money: 5000)
-unemployed.tasks << Task.create(description:"I want to go to seminary to become a priest",happiness_increment: 3, money: 500)
-
-
-#Medical School
+#medical jobs - sara
 med_school = Job.create(name: 'Medical Student', happiness_increment: -3, money: -10000)
 
-doctor = Job.create(name: 'doctor', happiness_increment: 6, level: 2, money: 100000)
+doctor = Job.create(name: 'doctor', happiness_increment: 6, money: 100000)
+#political jobs - sara
+
+#construction jobs - sebastian
+
+#religious jobs - sebastian
+
+
+#unemployed tasks - done
+unemployed.tasks << Task.create(description:"I want to go to school for medicine", outcome_job_id: med_school.id)
+unemployed.tasks << Task.create(description:"I want to go to work in construction")
+
+unemployed.tasks << Task.create(description:"I want to intern for my local congressman")
+unemployed.tasks << Task.create(description:"I want to go to seminary to become a priest")
+
+
+#Medical tasks - sara
+
 
 med_school.tasks << Task.create(description:"I am a doctor task!", outcome_job_id: doctor.id)
 med_school.tasks << Task.create(description:"I am a fun task!")
 med_school.tasks << Task.create(description:"I am a fun task!")
-construction_helper.tasks << Task.create(description:"I am a terrible task!")
-construction_helper.tasks << Task.create(description:"I am a boring task!")
+med_school.tasks << Task.create(description:"Quit my job", outcome_job_id:unemployed.id)
 doctor.tasks << Task.create(description:"I am a fantastic task!", outcome_job_id: med_school.id)
-con_task2 = Task.create(description:"I am a hard task!")
-con_task3 = Task.create(description:"I am an easy task!")
-int_task1 = Task.create(description:"I am a dumb task!")
-int_task2 = Task.create(description:"I am a lethal task!")
-sem_task1 = Task.create(description:"I am a religous task!")
-sem_task2 = Task.create(description:"I am a deadly task!")
+
+#political tasks - sara
+
+
+#construction tasks - sebastian
+
+
+#religious tasks  - sebastian
+
