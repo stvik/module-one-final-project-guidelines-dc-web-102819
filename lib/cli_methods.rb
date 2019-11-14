@@ -80,7 +80,6 @@ def path(user)
     UserJob.find_by(job_id:user.current_job.id, current_job?: true).change_current_to_false
     assign_job(new_job,user)
     increment_user(user,new_job)
-    user.current_job
 end
 
 
