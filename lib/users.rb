@@ -1,7 +1,8 @@
 class User < ActiveRecord::Base
     has_many :user_jobs
     has_many :jobs, through: :user_jobs
-
+    
+    #increments/decrements user attributes based on job
     def increment_user(job)
         self.increment_happiness(job)
         self.increment_money(job)
@@ -18,12 +19,12 @@ class User < ActiveRecord::Base
         self.save
     end
 
-    #create method that will increment the age by 10 after each turn
     def increment_age
         self.age += 10
         self.save
     end
 
+    #assigns job to user
     def assign_job(job_selection)
         UserJob.create(user_id: self.id, job_id: job_selection.id, current_job?: true)
     end
@@ -34,6 +35,7 @@ class User < ActiveRecord::Base
         current_job = Job.all.find {|job| job.id == current_jobid}
     end
 
+    #displays the result of the users choice
     def display_result
         puts "
      
@@ -41,9 +43,9 @@ class User < ActiveRecord::Base
         puts "#{self.current_job.description}
         "
     end
+
+    #display user stats
     def display_stats
-
-
         puts "Name: #{self.name}"
         puts "Age: #{self.age}"
         puts "Happiness: #{self.happiness}"
