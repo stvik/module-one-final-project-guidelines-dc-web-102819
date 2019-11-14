@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(version: 2019_11_13_212539) do
   create_table "jobs", force: :cascade do |t|
     t.string "name"
     t.integer "happiness_increment"
+    t.integer "level"
     t.integer "money"
     t.string "description"
   end
@@ -22,6 +23,8 @@ ActiveRecord::Schema.define(version: 2019_11_13_212539) do
   create_table "tasks", force: :cascade do |t|
     t.integer "job_id"
     t.string "description"
+    t.integer "money"
+    t.integer "happiness_increment"
     t.integer "outcome_job_id"
   end
 

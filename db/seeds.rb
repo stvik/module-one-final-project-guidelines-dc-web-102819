@@ -3,43 +3,109 @@ Job.destroy_all
 Task.destroy_all
 UserJob.destroy_all
 
-#starting 'job' - doneee
-
 #unemployed
 unemployed = Job.create(name: "Unemployed", happiness_increment: 0, money: 0)
 #medical jobs - sara
 med_school = Job.create(name: 'Medical Student', happiness_increment: -3, money: -10000)
-
-doctor = Job.create(name: 'doctor', happiness_increment: 6, money: 100000)
+doctor     = Job.create(name: 'doctor', happiness_increment: 6, money: 100000)
 #political jobs - sara
 
+
 #construction jobs - sebastian
+construction_start       = Job.create(name:"Construction debris cleaner", description:"Welcome to the jungle!", happiness_increment: 0, money: 5000)
+construction_helper      = Job.create(name:"Concrete mixer", description:"How to get screamed at 101" ,happiness_increment:1, money:7000)
+carpenter_apprentice     = Job.create(name:"Carpenter apprentice",description:"Any jackass can kick down a barn, but it takes a good carpenter to build one.",happiness_increment:2, money:9000)
+cleaning_for_electrician = Job.create(name:"Electrical technician helper", description:"I'm I doing the right thing?", happiness_increment: -1, money: 5000)
+construction_foreman     = Job.create(name:"Construction Foreman", description:"Congratulations! you can now scream at a helper", happiness_increment:2, money:10000)
+construction_manager     = Job.create(name:"Construction Manager", description:"You now manage the construcction site, dont forget were you came from.", happiness_increment:2, money:15000)
+senior_carpenter         = Job.create(name:"Senior carpenter", description:"You are now the master of the pine", happiness_increment: 5, money:20000)
+master_carpenter         = Job.create(name:"master carpenter", description:"You are now the Master of Wood", happiness_increment: 8, money: 80000)
+live_in_the_nature       = Job.create(name:"Wild Man", description:"You will survive in one of the most beautiful forest in the world", happiness_increment: 8, money: -8000)
+succsefull_buisness      = Job.create(name:"Entrepenour", description:"Live The American Dream", happiness_increment: 8, money: 700000)
+bad_buisness             = Job.create(name:"Bad Entrepenour", description:"Your buisness failed...Go back to work!", happiness_increment: -6, money: -15000)
+master_electrician       = Job.create(name:"Master Electrician", description:"Congratulations you can now create your own buisness or be the boss", happiness_increment:3, money: 30000)
+elevator_repairman       = Job.create(name:"Elevator Repairman", description: "Well now your gonna make more money", happiness_increment: 0, money:50000)
+tribe                    = Job.create(name:"Tribe", description:"your are now the leader of the Wolf Clan!", happiness_increment: 7, money: -5000)
+eaten_by_bear            = Job.create(name:"Bear", description:"You got eaten by a bear!", happiness_increment:-30, money: - 10000000)
+fall_down_mountain       = Job.create(name:"mountain", description:"Oh no, you fell down a mountain and died!", happiness_increment:-30, money: - 10000000)
+sickness                 = Job.create(name:"Sickness", description:"You got a fever and died, the nearest hospital was too far away.", happiness_increment:-30, money: - 1000000)
+betrayal                 = Job.create(name:"Betrayed", description:"You got betrayed by your tribe!", happiness_increment:-30, money: - 1000000)
+get_cancer               = Job.create(name:"Cancer", description:"You got cancer...maybe you shouldve'd been a doctor to maybe find a cure", happiness_increment: -9, money: -80000)
+architect                = Job.create(name:"Architect", description:"“As an architect you design for the present, with an awareness of the past, for a future which is essentially unknown.” – Norman Foster", happiness_increment: 6, money:80000)
+buisnnes_expansion       = Job.create(name:"Buisness Master", description:"You are a now one of the richest human beings alive.", happiness_increment:-2, money: 2000000)
+get_robbed               = Job.create(name:"robbed", description:"Having a lot of money has a lot of risks and you just got robbed",happiness_increment: -7, money: -10000000)
+donate_money             = Job.create(name:"Donation", description:"Thanks for making the world a better place, enjoy your happiness", happiness_increment: 30, money: -1000000000)
+hermit                   = Job.create(name:"Hermit", description:"Keep enjoying the nature!", happiness_increment: 10, money: -2000)
+investor                 = Job.create(name:"Investor", description:"Invest wisely", happiness_increment:8, money:0)
+good_tribe               = Job.create(name:"Tribe Leader", description:"You are now bigger than the aztecs", happiness_increment: 8, money:0)
+all_dead                 = Job.create(name:"Tribe dies", description:"Your bows and arrows won't conquer a country...obviously", happiness_increment:-30, money: -10000000)
 
-#religious jobs - sebastian
+#construction tasks - sebastian
 
+construction_start.tasks        << Task.create(description:"Have a great construction start as a construction helper", outcome_job_id: construction_helper.id )
+construction_start.tasks        << Task.create(description:"Fresh start as a carpenter aprentice",outcome_job_id: carpenter_apprentice.id )                                                         
+construction_start.tasks        << Task.create(description:"Clean the trash for the electrical technictian",outcome_job_id: cleaning_for_electrician.id)
+construction_helper.tasks       << Task.create(description:"Go to construction 101 course", outcome_job_id:construction_manager.id)
+construction_helper.tasks       << Task.create(description:"Keep grinding", outcome_job_id: construction_foreman.id)
+construction_helper.tasks       << Task.create(description:"Quit job", outcome_job_id: unemployed.id)
+carpenter_apprentice.tasks      << Task.create(description:"Join a weekend carpenter club", outcome_job_id: senior_carpenter.id)
+carpenter_apprentice.tasks      << Task.create(description:"Help your family start a wood company", outcome_job_id:[bad_buisness.id, succsefull_buisness.id].sample)
+carpenter_apprentice.tasks      << Task.create(description:"Quit job", outcome_job_id: [unemployed.id, live_in_the_nature.id].sample)
+cleaning_for_electrician.tasks  << Task.create(description:"Go to electrical course", outcome_job_id: master_electrician.id)
+cleaning_for_electrician.tasks  << Task.create(description:"Get raised to an electrical apprentice", outcome_job_id:elevator_repairman.id)
+cleaning_for_electrician.tasks  << Task.create(description:"Quit job", outcome_job_id: unemployed.id)
+senior_carpenter.tasks          << Task.create(description:"Go live in the nature", outcome_job_id: live_in_the_nature.id)
+senior_carpenter.tasks          << Task.create(description:"Go back to school to study architecture", outcome_job_id: architect.id)
+senior_carpenter.tasks          << Task.create(description:"Get a raise", outcome_job_id: master_carpenter.id)
+live_in_the_nature.tasks        << Task.create(description:"Start a tribe", outcome_job_id: tribe.id)
+live_in_the_nature.tasks        << Task.create(description:"Become a hermit", outcome_job_id: [hermit.id, eaten_by_bear.id].sample)
+live_in_the_nature.tasks        << Task.create(description:"Go back to society", outcome_job_id: unemployed.id)
+bad_buisness.tasks              << Task.create(description:"Go live in the nature", outcome_job_id: live_in_the_nature.id)
+bad_buisness.tasks              << Task.create(description:"Switch career", outcome_job_id: unemployed.id)
+succsefull_buisness.tasks       << Task.create(description:"Become an investor", outcome_job_id:investor.id)
+succsefull_buisness.tasks       << Task.create(description:"Go back to school to study architecture", outcome_job_id: architect.id)
+succsefull_buisness.tasks       << Task.create(description:"Expand the buisness", outcome_job_id:[buisnnes_expansion.id, bad_buisness.id].sample)
+master_electrician.tasks        << Task.create(description:"Create your own buisness", outcome_job_id:[bad_buisness.id, succsefull_buisness.id].sample)
+master_electrician.tasks        << Task.create(description:"Continue as a master electrician", outcome_job_id: master_electrician.id)
+master_electrician.tasks        << Task.create(description:"Career switch", outcome_job_id: unemployed.id)
+elevator_repairman.tasks        << Task.create(description:"Create your own buisness", outcome_job_id:[bad_buisness.id, succsefull_buisness.id].sample)
+elevator_repairman.tasks        << Task.create(description:"Continue with your current job", outcome_job_id: elevator_repairman.id)
+elevator_repairman.tasks        << Task.create(description:"Quit job", outcome_job_id:unemployed.id)
+tribe.tasks                     << Task.create(description:"Expand tribe", outcome_job_id:[betrayal.id, sickness.id, good_tribe.id])
+tribe.tasks                     << Task.create(description:"Abandon tribe", outcome_job_id:[fall_down_mountain.id, unemployed.id].sample)
+investor.tasks                  << Task.create(description:"Invest in real estate", outcome_job_id:[get_cancer.id, succsefull_buisness.id].sample)
+investor.tasks                  << Task.create(description:"Donate your money and Become a hermit", outcome_job_id:live_in_the_nature.id)
+investor.tasks                  << Task.create(description:"Invest in the stock market", outcome_job_id: [bad_buisness.id, succsefull_buisness.id].sample)
+architect.tasks                 << Task.create(description:"Continue as an architect", outcome_job_id:architect.id)
+architect.tasks                 << Task.create(description:"Create your own buisness", outcome_job_id:[bad_buisness.id, succsefull_buisness.id].sample)
+architect.tasks                 << Task.create(description:"Become a hermit", outcome_job_id:live_in_the_nature.id)
+buisnnes_expansion.tasks        << Task.create(description:"Become a doctor", outcome_job_id: med_school.id)
+buisnnes_expansion.tasks        << Task.create(description:"Keep buisness growing", outcome_job_id:[get_cancer.id, get_robbed.id])
+buisnnes_expansion.tasks        << Task.create(description:"Donate your money to charity", outcome_job_id: unemployed.id)
+master_carpenter.tasks          << Task.create(description:"Go back to school to study architecture", outcome_job_id: architect.id)
+master_carpenter.tasks          << Task.create(description:"Go live in the nature", outcome_job_id: live_in_the_nature.id)
+master_carpenter.tasks          << Task.create(description:"change career", outcome_job_id: unemployed.id)
+hermit.tasks                    << Task.create(description:"Start a tribe", outcome_job_id: tribe.id)
+hermit.tasks                    << Task.create(description:"Go back to society", outcome_job_id: unemployed.id)
+hermit.tasks                    << Task.create(description:"Continue as a hermit", outcome_job_id: hermit.id)
+good_tribe.tasks                << Task.create(description:"Invade another country", outcome_job_id:all_dead.id)
+good_tribe.tasks                << Task.create(description:"Abandon Tribe", outcome_job_id:[fall_down_mountain.id, unemployed.id].sample)
+good_tribe.tasks                << Task.create(description:"Live in the tribe as it is", outcome_job_id:good_tribe.id)
+construction_manager.tasks      << Task.create(description:"Go back to school to study architecture", outcome_job_id: architect.id)
+construction_manager.tasks      << Task.create(description:"Go live in the nature", outcome_job_id: live_in_the_nature.id)
+construction_manager.tasks      << Task.create(description:"Keep working", outcome_job_id:construction_manager.id)
 
-#unemployed tasks - done
 unemployed.tasks << Task.create(description:"I want to go to school for medicine", outcome_job_id: med_school.id)
-unemployed.tasks << Task.create(description:"I want to go to work in construction")
-
+unemployed.tasks << Task.create(description: "I want to go to work in construction", outcome_job_id: construction_start.id)
 unemployed.tasks << Task.create(description:"I want to intern for my local congressman")
-unemployed.tasks << Task.create(description:"I want to go to seminary to become a priest")
 
+
+
+#political tasks - sara
 
 #Medical tasks - sara
-
-
 med_school.tasks << Task.create(description:"I am a doctor task!", outcome_job_id: doctor.id)
 med_school.tasks << Task.create(description:"I am a fun task!")
 med_school.tasks << Task.create(description:"I am a fun task!")
 med_school.tasks << Task.create(description:"Quit my job", outcome_job_id:unemployed.id)
 doctor.tasks << Task.create(description:"I am a fantastic task!", outcome_job_id: med_school.id)
-
-#political tasks - sara
-
-
-#construction tasks - sebastian
-
-
-#religious tasks  - sebastian
-
