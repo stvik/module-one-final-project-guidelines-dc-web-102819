@@ -142,19 +142,19 @@ tribe.tasks                     << Task.create(description:"Abandon tribe", outc
 #investor tasks.
 
 investor.tasks                  << Task.create(description:"Invest in real estate", outcome_job_id:[get_cancer.id, succsefull_buisness.id].sample)
-investor.tasks                  << Task.create(description:"Donate your money and Become a hermit", outcome_job_id:live_in_the_nature.id)
+investor.tasks                  << Task.create(description:"Donate your money and become a hermit", outcome_job_id:live_in_the_nature.id)
 investor.tasks                  << Task.create(description:"Invest in the stock market", outcome_job_id: [bad_buisness.id, succsefull_buisness.id].sample)
 
 #architect tasks.
 
 architect.tasks                 << Task.create(description:"Continue as an architect", outcome_job_id:architect.id)
-architect.tasks                 << Task.create(description:"Create your own buisness", outcome_job_id:[bad_buisness.id, succsefull_buisness.id].sample)
+architect.tasks                 << Task.create(description:"Create your own business", outcome_job_id:[bad_buisness.id, succsefull_buisness.id].sample)
 architect.tasks                 << Task.create(description:"Become a hermit", outcome_job_id:live_in_the_nature.id)
 
 #buisness expansion tasks.
 
 buisnnes_expansion.tasks        << Task.create(description:"Become a doctor", outcome_job_id: med_school.id)
-buisnnes_expansion.tasks        << Task.create(description:"Keep buisness growing", outcome_job_id:[get_cancer.id, get_robbed.id])
+buisnnes_expansion.tasks        << Task.create(description:"Keep business growing", outcome_job_id:[get_cancer.id, get_robbed.id])
 buisnnes_expansion.tasks        << Task.create(description:"Donate your money to charity", outcome_job_id: unemployed.id)
 
 #master carpenter tasks.
