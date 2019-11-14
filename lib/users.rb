@@ -23,5 +23,22 @@ class User < ActiveRecord::Base
         current_job = Job.all.find {|job| job.id == current_jobid}
     end
 
+    def display_result
+        puts "
+     
+        "
+        puts "#{self.current_job.description}
+        "
+    end
+    def display_stats
 
+
+        puts "Name: #{self.name}"
+        puts "Age: #{self.age}"
+        puts "Happiness: #{self.happiness}"
+        puts "Money: #{self.money}"
+        puts "Current Job: #{self.current_job.name}
+        "
+    end
+        
 end

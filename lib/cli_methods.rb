@@ -3,12 +3,22 @@ PROMPT = TTY::Prompt.new
 
 
 def welcome
-    puts "Welcome to your new life!"
+    puts "
+    
+
+
+                                    Welcome to your new life!
+    
+    
+    ************************************************************************************************
+    
+    
+    "
 end
 
 #ask_name is using a gem called tty to prompt the user for the name its requiring an inout and its capitalizing it
 def ask_name
-    PROMPT.ask("Choose your name:") do |q|
+    PROMPT.ask("Choose your name: ") do |q|
         q.required true
         q.modify :capitalize
     end
@@ -72,6 +82,10 @@ def output_tasks(user)
 
 end
 
+def output_results_of_choice(user, job)
+
+end
+
 def path(user)
     chosen_task = output_tasks(user)
     new_job_id = chosen_task.outcome_job_id
@@ -80,6 +94,9 @@ def path(user)
     assign_job(new_job,user)
     increment_user(user,new_job)
     choice_output(user, new_job)
+    user.display_result
+    user.display_stats
+
 end
 
 
@@ -92,7 +109,26 @@ def run_program
 
     end
   
+
+    if player.happiness <0 || player.money < 0
+    puts"                                            YOU LOSE
+        *************************************************************************************
+    
+            "
+            player.display_result
+            player.display_stats
+    else
+        puts " 
+                                         CONGRATULATIONS
+        *******************************************************************************************
+
+            You've managed to make it all the way to retirement. Here are your final results:
+                                        "
+    player.display_stats
+    end
+    #binding.pry
 end
+
 
 
 
