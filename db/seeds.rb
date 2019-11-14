@@ -20,6 +20,7 @@ positive_brain_surgeon          = Job.create(name: 'Brain Surgeon', happiness_in
 cancer_curer                    = Job.create(name: 'Nobel Prize Winner', happiness_increment: 8, money: 500000, description: "It worked! You won a nobel prize for curing cancer.")
 head_researcher                 = Job.create(name: 'Zombie', happiness_increment: -200, money: -50000000, description: "Oh no! You created zombies and destroyed the world!")
 vacation                        = Job.create(name: 'On Vacation', happiness_increment: 9, money: -20000, description: "You are having a wonderful time travelling all around the world.")
+zombie                          = Job.create(name: 'Zombie', happiness_increment: -200, money: -50000000, description: "Oh no! You created zombies and destroyed the world!")
 
 #nurse jobs - sara
 
@@ -215,7 +216,7 @@ positive_brain_surgeon.tasks    << Task.create(description: "Go on vacation.", o
 
 #researcher tasks.
 
-researcher.tasks                << Task.create(description:"Mutate the virus", outcome_job_id: [cancer_curer.id,zombie.id].sample)
+researcher.tasks                << Task.create(description:"Mutate the virus", outcome_job_id: [cancer_curer.id, zombie.id].sample)
 researcher.tasks                << Task.create(description:"Do additional research", outcome_job_id: head_researcher.id)
 researcher.tasks                << Task.create(description:"Realize research isn't for you. Perform heart surgery instead.", outcome_job_id: heart_surgeon.id)
 

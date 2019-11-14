@@ -65,12 +65,11 @@ end
 
 
 def output_tasks(user)
-    # user#current_job is used to find the current job. Task descriptions are then grabbed from that job and used
-    #to prompt the user to make a decision
     
     task_descriptions = user.current_job.tasks.collect {|task| task.description}
-    input = PROMPT.select("Make a decision:", task_descriptions)
-    task = user.current_job.tasks.find_by(description: input)
+    input             = PROMPT.select("Make a decision:", task_descriptions)
+    task              = user.current_job.tasks.find_by(description: input)
+
 end
 
 def path(user)
@@ -80,6 +79,7 @@ def path(user)
     UserJob.find_by(job_id:user.current_job.id, current_job?: true).change_current_to_false
     assign_job(new_job,user)
     increment_user(user,new_job)
+    choice_output(user, new_job)
 end
 
 
@@ -89,8 +89,9 @@ def run_program
     player = create_user
     while player.age<75 && player.happiness > 0 && player.money > 0 do
         path(player)
+
     end
-    binding.pry
+  
 end
 
 
@@ -100,7 +101,6 @@ end
 #    let user choose from the task descriptions for that "level" and job_id
 #    each choice will have different outcome. 
 # end
-
 
 
 
