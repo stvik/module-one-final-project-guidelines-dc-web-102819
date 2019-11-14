@@ -4,7 +4,7 @@ require_relative '../db/seeds.rb'
 
 
 run_program
-binding.pry
+#binding.pry
 0
 
 
