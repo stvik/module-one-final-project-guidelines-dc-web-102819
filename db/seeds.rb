@@ -120,11 +120,11 @@ bad_buisness.tasks              << Task.create(description:"Switch career", outc
 
 succsefull_buisness.tasks       << Task.create(description:"Become an investor", outcome_job_id:investor.id)
 succsefull_buisness.tasks       << Task.create(description:"Go back to school to study architecture", outcome_job_id: architect.id)
-succsefull_buisness.tasks       << Task.create(description:"Expand the buisness", outcome_job_id:[buisnnes_expansion.id, bad_buisness.id].sample)
+succsefull_buisness.tasks       << Task.create(description:"Expand the business", outcome_job_id:[buisnnes_expansion.id, bad_buisness.id].sample)
 
 #master electrician tasks.
 
-master_electrician.tasks        << Task.create(description:"Create your own buisness", outcome_job_id:[bad_buisness.id, succsefull_buisness.id].sample)
+master_electrician.tasks        << Task.create(description:"Create your own business", outcome_job_id:[bad_buisness.id, succsefull_buisness.id].sample)
 master_electrician.tasks        << Task.create(description:"Continue as a master electrician", outcome_job_id: master_electrician.id)
 master_electrician.tasks        << Task.create(description:"Career switch", outcome_job_id: unemployed.id)
 
@@ -136,7 +136,7 @@ elevator_repairman.tasks        << Task.create(description:"Quit job", outcome_j
 
 #tribe tasks.
 
-tribe.tasks                     << Task.create(description:"Expand tribe", outcome_job_id:[betrayal.id, sickness.id, good_tribe.id])
+tribe.tasks                     << Task.create(description:"Expand tribe", outcome_job_id:[betrayal.id, sickness.id, good_tribe.id].sample)
 tribe.tasks                     << Task.create(description:"Abandon tribe", outcome_job_id:[fall_down_mountain.id, unemployed.id].sample)
 
 #investor tasks.

@@ -48,25 +48,41 @@ def path(user)
     user.increment_user(new_job)
 end
 
+def play_again?
+    PROMPT.yes?('Want to play again?')  
+end  
+
+# def display_games_played
+
+# end
+
 def run_program
     Graphic.welcome
     # create user and set it equal to 'player'
-    player = create_user
-    #run the program until age reaches 75 or happiness or money dip below 0
-    while player.age<75 && player.happiness > 0 && player.money > 0 do
-        path(player)
-        if player.happiness < 0 || player.money < 0   # <== Player loses
-            Graphic.you_lose
-            player.display_result
-            player.display_stats
-        elsif player.age > 74               #<== Player wins
-            Graphic.congrats
-            player.display_stats
-        else                                #<== Displays result and program keeps running
-            player.display_result
-            player.display_stats
+    begin
+        UserJob.set_all_to_false
+        player = create_user
+        #run the program until age reaches 75 or happiness or money dip below 0
+        while player.age<75 && player.happiness > 0 && player.money > 0 do
+            path(player)
+            #binding.pry
+            if player.happiness < 0 || player.money < 0   # <== Player loses
+                Graphic.you_lose
+                player.display_result
+                player.display_stats
+                player.display_jobs
+            elsif player.age > 74               #<== Player wins
+                Graphic.congrats
+                player.display_stats
+                player.display_jobs
+            else                                #<== Displays result and program keeps running
+                player.display_result
+                player.display_stats
+            end
         end
-    end
+    end while play_again?
+
+    
 end
 
 

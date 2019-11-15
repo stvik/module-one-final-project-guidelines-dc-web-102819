@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
     has_many :user_jobs
     has_many :jobs, through: :user_jobs
-    
+
     #increments/decrements user attributes based on job
     def increment_user(job)
         self.increment_happiness(job)
@@ -53,5 +53,13 @@ class User < ActiveRecord::Base
         puts "Current Job: #{self.current_job.name}
         "
     end
+
+    #print all jobs user has had
+    def display_jobs
+        all_jobs = self.jobs.collect {|job| job.name}.uniq
+        puts "These are all the jobs you've had:"
+        puts all_jobs[1..all_jobs.length]
+    end
+
         
 end
