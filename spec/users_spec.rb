@@ -1,6 +1,5 @@
 
 require_relative '../config/environment'
-
 require 'rspec'
 
 
@@ -19,9 +18,26 @@ describe User do
         end
     end
     describe "increment happiness" do
-        it "returns true when happiness is increasing" do
-            binding.pry
-         expect(user.assign_job(med_school)).to eql(true)
+        it "returns true when method is working" do
+         expect(user.increment_user(Job.all[0])).to eql(true)
+        end
+    end
+
+    describe "increment_money" do 
+        it "returns true when method is working" do
+            expect(user.increment_money(Job.all[0])).to eql(true)
+        end
+    end
+
+    describe "increment_user" do 
+        it "returns true when method is working" do 
+            expect(user.increment_user(Job.all[0])).to be(true)
+        end
+    end
+
+    describe "assign_job" do
+        it "returns true when method is working" do 
+            expect(user.assign_job(Job.all[0])).to eql(UserJob.last)
         end
     end
 
