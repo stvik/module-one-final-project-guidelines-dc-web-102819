@@ -52,9 +52,17 @@ def play_again?
     PROMPT.yes?('Want to play again?')  
 end  
 
-# def display_games_played
+def view_leaderboard?
+    PROMPT.yes?('Do you want to view the leaderboard?')
+end
 
-# end
+def display_games_played
+
+    Graphic.leaderboard
+
+    User.display_all_stats
+
+end
 
 def run_program
     Graphic.welcome
@@ -82,7 +90,9 @@ def run_program
         end
     end while play_again?
 
-    
+    if view_leaderboard?
+        display_games_played
+    end
 end
 
 

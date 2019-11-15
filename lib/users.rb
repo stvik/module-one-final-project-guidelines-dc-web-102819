@@ -45,13 +45,16 @@ class User < ActiveRecord::Base
     end
 
     #display user stats
+    def stats
+        ["Name: #{self.name}",
+        "Age: #{self.age}",
+        "Happiness: #{self.happiness}",
+        "Money: #{self.money}",
+        "Current Job: #{self.current_job.name}"]
+    end
+
     def display_stats
-        puts "Name: #{self.name}"
-        puts "Age: #{self.age}"
-        puts "Happiness: #{self.happiness}"
-        puts "Money: #{self.money}"
-        puts "Current Job: #{self.current_job.name}
-        "
+        puts stats
     end
 
     #print all jobs user has had
@@ -61,5 +64,13 @@ class User < ActiveRecord::Base
         puts all_jobs[1..all_jobs.length]
     end
 
+    def self.display_all_stats
+        self.all.each do |user|
+            puts user.stats[0..3]
+            puts"
+            "
+        end
+    
+    end
         
 end
