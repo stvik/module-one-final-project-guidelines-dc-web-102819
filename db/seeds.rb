@@ -87,6 +87,12 @@ construction_helper.tasks       << Task.create(description:"Go to construction 1
 construction_helper.tasks       << Task.create(description:"Keep grinding", outcome_job_id: construction_foreman.id)
 construction_helper.tasks       << Task.create(description:"Quit job", outcome_job_id: unemployed.id)
 
+#construction foreman tasks.
+
+construction_foreman.tasks      << Task.create(description:"Go to construction 101 course", outcome_job_id: construction_manager.id)
+construction_foreman.tasks      << Task.create(description:"Keep Grinding", outcome_job_id:construction_manager.id)
+construction_foreman.tasks      << Task.create(description:"Quit job", outcome_job_id: unemployed.id)
+
 #carpenter apprentice tasks.
 
 carpenter_apprentice.tasks      << Task.create(description:"Join a weekend carpenter club", outcome_job_id: senior_carpenter.id)
