@@ -1,8 +1,6 @@
 
 require_relative '../config/environment'
-require_relative '../db/seeds.rb'
-require_relative '../lib/users.rb'
-require 'pry'
+
 require 'rspec'
 
 
@@ -20,11 +18,12 @@ describe User do
         expect(user.age).to eql(10)
         end
     end
-    # describe "increment happiness" do
-    #     it "returns true when happiness is increasing" do
-    #      expect(user.assign_job(med_school)).to eql(true)
-    #     end
-    # end
+    describe "increment happiness" do
+        it "returns true when happiness is increasing" do
+            binding.pry
+         expect(user.assign_job(med_school)).to eql(true)
+        end
+    end
 
 end
 
